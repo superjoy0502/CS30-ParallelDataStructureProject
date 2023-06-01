@@ -2,10 +2,9 @@ package io.github.superjoy0502.paralleldatastructureproject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class AlgorithmHandler {
-    public ArrayList<String> bubbleSort(ArrayList<String> arrayList) {
+    public ArrayList<String> bubbleSortString(ArrayList<String> arrayList) {
         for (int i = 0; i < arrayList.size(); i++) {
             for (int j = 0; j < arrayList.size() - i - 1; j++) {
                 if (arrayList.get(j).compareTo(arrayList.get(j + 1)) > 0) {
@@ -18,7 +17,7 @@ public class AlgorithmHandler {
         return arrayList;
     }
 
-    public ArrayList<LocalDate> bubbleSort(ArrayList<LocalDate> arrayList) {
+    public ArrayList<LocalDate> bubbleSortDate(ArrayList<LocalDate> arrayList) {
         for (int i = 0; i < arrayList.size(); i++) {
             for (int j = 0; j < arrayList.size() - i - 1; j++) {
                 if (arrayList.get(j).isAfter(arrayList.get(j + 1))) {
@@ -31,7 +30,7 @@ public class AlgorithmHandler {
         return arrayList;
     }
 
-    public String binarySearch(ArrayList<String> arrayList, String target) {
+    public int binarySearch(ArrayList<String> arrayList, String target) {
         int low = 0;
         int high = arrayList.size() - 1;
         while (low <= high) {
@@ -41,25 +40,25 @@ public class AlgorithmHandler {
             } else if (arrayList.get(mid).compareTo(target) > 0) {
                 high = mid - 1;
             } else {
-                return arrayList.get(mid);
+                return mid;
             }
         }
-        return null;
+        return -1;
     }
 
-    public Date binarySearch(ArrayList<Date> arrayList, Date target) {
+    public int binarySearch(ArrayList<LocalDate> arrayList, LocalDate target) {
         int low = 0;
         int high = arrayList.size() - 1;
         while (low <= high) {
             int mid = (low + high) / 2;
-            if (arrayList.get(mid).compareTo(target) < 0) {
+            if (arrayList.get(mid).isBefore(target)) {
                 low = mid + 1;
-            } else if (arrayList.get(mid).compareTo(target) > 0) {
+            } else if (arrayList.get(mid).isAfter(target)) {
                 high = mid - 1;
             } else {
-                return arrayList.get(mid);
+                return mid;
             }
         }
-        return null;
+        return -1;
     }
 }
